@@ -1,30 +1,49 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import { FaMoon } from "react-icons/fa";
-import { FaSun } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Navbar() {
-  const [darkMode, setDarkMode] = useState("dark");
+  const [darkMode, setDarkMode] = useState("light");
 
-  /// handle dark mode
+  // Initialize dark mode based on user preference on the client side
+  useEffect(() => {
+    if (localStorage.getItem("darkMode")) {
+      const userPrefersDark = localStorage.getItem("darkMode") || "light";
+      setDarkMode(userPrefersDark);
+    } else {
+      const userPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setDarkMode(userPrefersDark ? "dark" : "light");
+    }
+  }, []);
+
+  // Handle dark mode toggle
   const handleDarkMode = () => {
-    setDarkMode(darkMode === "light" ? "dark" : "light");
+    if (darkMode === "light") {
+      setDarkMode("dark");
+      localStorage.setItem("darkMode", "dark");
+    } else {
+      setDarkMode("light");
+      localStorage.setItem("darkMode", "light");
+    }
   };
 
   useEffect(() => {
     if (darkMode === "dark") {
-      document.querySelector("html")?.classList.add("dark");
+      document.documentElement.classList.add("dark");
     } else {
-      document.querySelector("html")?.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
 
   return (
     <div className="flex w-full navbar items-center justify-between px-6 lg:px-20 py-6 shadow bg-white text-veryDarkBlue2 dark:bg-darkBlue dark:text-white z-10">
-      <h1 className="text-[28px] font-[700]">Where in the world?</h1>
+      <Link href="/" className="text-[16px] md:text-[28px] font-[700]">
+        Where in the world?
+      </Link>
       <button
-        className="flex items-center gap-x-[8px]"
+        className="flex items-center gap-x-[8px] text-[12px] md:text-[14px]"
         onClick={handleDarkMode}
       >
         <span>{darkMode === "light" ? <FaMoon /> : <FaSun />}</span>

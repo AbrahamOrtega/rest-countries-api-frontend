@@ -15,7 +15,7 @@ const config: Config = {
         veryDarkBlue2: "#111517", //Light Mode Text
         darkGray: "#858585", //Light Mode Input
         veryLightGray: "#FAFAFA", //Light Mode Background
-         // white Dark Mode Text & Light Mode Elements
+         // white: "FFFFFF" Dark Mode Text & Light Mode Elements
       },
     },
   },

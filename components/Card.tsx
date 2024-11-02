@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Card(props: {
   flag: string;
@@ -8,7 +9,10 @@ export default function Card(props: {
   capital: string;
 }) {
   return (
-    <div className="flex flex-col w-[300px] h-fit rounded-md shadow-md bg-white dark:bg-darkBlue cursor-pointer">
+    <Link
+      href={`/name/${props.name}`}
+      className="flex flex-col w-[300px] h-fit rounded-md shadow-md bg-white dark:bg-darkBlue cursor-pointer"
+    >
       <div className="flex w-full pb-[60%] relative">
         <Image
           src={props.flag}
@@ -30,6 +34,6 @@ export default function Card(props: {
           <span className="font-[600]">Capital:</span> {props.capital}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

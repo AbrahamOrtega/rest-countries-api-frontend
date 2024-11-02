@@ -36,7 +36,7 @@ export default function Home() {
       <Navbar />
       <div className="flex flex-col h-full px-6 lg:px-20 pt-8 flex-grow">
         {/* Filter Section */}
-        <div className="flex w-full h-fit justify-between items-center">
+        <div className="flex flex-col md:flex-row gap-y-4 w-full h-fit items-start justify-between md:items-center">
           {/* Search Input */}
           <div className="flex w-full max-w-[500px] items-center gap-x-[16px] px-6 py-4 shadow dark:bg-darkBlue text-veryDarkBlue2 dark:text-white rounded-md text-[14px]">
             <IoSearchSharp className="text-[20px]" />
