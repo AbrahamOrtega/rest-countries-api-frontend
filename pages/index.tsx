@@ -14,16 +14,18 @@ export default function Home() {
 
   // Filter countries by search
   useEffect(() => {
-    setFilteredCountries(
-      countries.filter((country) =>
-        country.name.common.toLowerCase().includes(search.toLowerCase())
-      )
-    );
+    if (countries.length > 0) {
+      setFilteredCountries(
+        countries.filter((country) =>
+          country.name.common.toLowerCase().includes(search.toLowerCase()),
+        ),
+      );
+    }
   }, [search, countries]);
 
   useEffect(() => {
     fetch(
-      `https://restcountries.com/v3.1${!region ? "/all" : `/region/${region}`}`
+      `https://restcountries.com/v3.1${!region ? "/all" : `/region/${region}`}`,
     )
       .then((res) => res.json())
       .then((data) => {
